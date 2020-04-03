@@ -36,7 +36,7 @@ Installing pylearn is very simple.
 1. First, install the Stata code and documentation. You can run the following Stata command to install directly from this GitHub repository:
 
 ```stata
-net install pyforest, from(https://raw.githubusercontent.com/mdroste/stata-pyforest/master/) replace
+net install pylearn, from(https://raw.githubusercontent.com/mdroste/stata-learn/master/src) replace
 ```
 
 2. Install Python if you haven't already, and check to make sure Stata can see it with the following Stata command:
@@ -49,7 +49,7 @@ If Stata cannot find your Python installation, refer to the [installation guide]
 3. Make sure that you have the required Python prerequisites installed by running the included Stata program pyforest_setup:
 
 ```stata
-pyforest_setup
+pylearn_setup
 ```
 
 
@@ -61,10 +61,10 @@ Pyforest currently contains a handful of very popular supervised learning algori
 
 | Function     | Description                               | Related scikit-learn classes                     | 
 | ------------ | -----------                               | ------------------------------                    |
-| pytree       | Decision trees                            |  [DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html), [DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)    |
-| pyforest     | Random forests                            |  [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html), [randomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)    | 
-| pymlp        | Neural networks (multi-layer perceptrons) |  [MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html#sklearn.neural_network.MLPClassifier), [MLPRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html#sklearn.neural_network.MLPClassifier)    |
- boost
+| pytree       | Decision trees                           |  [DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)<br>[DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)    |
+| pyforest     | Random forests                            |  [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)<br>[randomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)    | 
+| pymlp        | Neural networks (multi-layer perceptrons) |  [MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html)<br>[MLPRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html)    |
+| pyada        | Boosted trees (AdaBoost.R2)               |  [AdaBoostClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html)<br>[AdaBoostRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html)    |
   
 Todo
 ---------------------------------
