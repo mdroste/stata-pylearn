@@ -17,7 +17,7 @@ Supervised learning in Stata with [scikit-learn](https://scikit-learn.org)
 Overview
 ---------------------------------
 
-pylearn is a set of Stata modules that allows Stata users to implement many popular supervised learning algorithms directly from Stata. In particular, pylearn makes use of Stata 16.0's [Python integration](https://www.stata.com/new-in-stata/python-integration/) and the popular Python library [scikit-learn](https://scikit-learn.org) to interface between Stata and Python behind the scenes. This allows Stata users to estimate a much broader class of supervised learning models - decision trees, random forests, adaptive boosting, gradient boosting, and multi-layer perceptrons (neural networks) - directly from Stata and with a common Stata-like syntax.
+pylearn is a set of Stata modules that allows Stata users to implement many popular supervised learning algorithms - decision trees, random forests, adaptive boosting, gradient boosting, and multi-layer perceptrons (neural networks) - directly from Stata. In particular, pylearn makes use of Stata 16.0's [Python integration](https://www.stata.com/new-in-stata/python-integration/) and the popular Python library [scikit-learn](https://scikit-learn.org) to interface between Stata and Python behind the scenes. 
 
 
 Features
