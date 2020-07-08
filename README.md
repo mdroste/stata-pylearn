@@ -3,9 +3,10 @@ pylearn
 =================================
 
 [Overview](#overview)
+| [Features](#features)
 | [Installation](#installation)
+| [Prerequisites](#prerequisites)
 | [Usage](#usage)
-| [Benchmarks](#benchmarks)
 | [To-Do](#todo)
 | [License](#license)
 
@@ -49,7 +50,7 @@ pylearn also requires Python 3.6+, [scikit-learn](https://scikit-learn.org), and
 
 
 
-Installation and Upgrading
+Installation
 ---------------------------------
 
 Installing pylearn is very simple.
@@ -61,11 +62,7 @@ net install pylearn, from(https://raw.githubusercontent.com/mdroste/stata-pylear
 ```
 
 2. Install Python if you haven't already, and check to make sure Stata can see it with the following Stata command:
-```stata
-python query
-```
 
-If Stata cannot find your Python installation, refer to the [installation guide](docs/install.md).
 
 3. Make sure that you have the required Python prerequisites installed by running the included Stata program:
 
@@ -73,7 +70,9 @@ If Stata cannot find your Python installation, refer to the [installation guide]
 pylearn, setup
 ```
 
-To check if you have the latest version of pylearn, simply run the following:
+If Stata cannot find your Python installation, refer to the [installation guide](docs/install.md).
+
+To upgrade to the latest version of pylearn, simply run the following:
 ```stata
 pylearn, upgrade
 ```
