@@ -1,4 +1,4 @@
-*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.63, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pyforest.ado
@@ -257,23 +257,22 @@ else {
 
 *-------------------------------------------------------------------------------
 * Manipulate data in Stata
-* XX this should be an ado
 *-------------------------------------------------------------------------------
 
 * Pass varlist into varlists called yvar and xvars
 gettoken yvar xvars : varlist
 local num_features : word count `xvars'
 
-* generate an index of original data so we can easily merge back on the results
+* Generate an index of original data so we can easily merge back on the results
 * xx there is probably a better way to do this... feels inefficient
 * xx only needs to be done if saving predictions
 tempvar index
 gen `index' = _n
 
-* preserve original data
+* Preserve original data
 preserve
 
-* restrict sample with if and in conditions
+* Restrict sample with if and in conditions
 marksample touse, strok novarlist
 qui drop if `touse'==0
 
@@ -289,14 +288,12 @@ if "`type'"=="classify" {
 	}
 }
 
-* restrict sample to jointly nonmissing observations
+* Restrict sample to jointly nonmissing observations
 foreach v of varlist `varlist' {
 	qui drop if mi(`v')
 }
 
 * Define a temporary variable for the training sample
-*cap drop rftrain
-*local training_var rftrain
 local training_di `training'
 tempvar training_var
 if "`training'"=="" {
@@ -393,14 +390,12 @@ noi di in gr "{ul:Output}"
 noi di in gr "Prediction: " in ye "`prediction_di'"
 if "`type'"=="regress" {
 	noi di in gr "Training RMSE       = " in ye `is_rmse'
-	*noi di in gr "Training MAE        = " in ye `is_mae'
 }
 if "`type'"=="classify" {
 	noi di in gr "Training accuracy   = " in ye `e(training_accuracy)'
 }
 if "`type'"=="regress" & `nonempty_test'==1 {
 	noi di in gr "Validation RMSE     = " in ye `os_rmse'
-	*noi di in gr "Validation MAE      = " in ye `os_mae'
 }
 if "`type'"=="classify" & `nonempty_test'==1 {
 	noi di in gr "Validation accuracy = " in ye `e(test_accuracy)'
@@ -433,16 +428,27 @@ if "`needs_encoding'"=="yes" {
 	rename `prediction'_2 `prediction'
 }
 
+*-------------------------------------------------------------------------------
 * Return stuff to e class
-*ereturn matrix importance = temp1e
-ereturn local predict "pylearn_predict"
-global features "`xvars'"
+*-------------------------------------------------------------------------------
 
+* Count features so I can return it
+local K = 0
+foreach v of varlist `xvars' {
+	local K = `K'+1
+}
+
+* Store as locals
+ereturn local predict "pylearn_predict"
+ereturn local features "`xvars'"
+ereturn local N `num_obs_train'
+ereturn local N_test `num_obs_test'
+ereturn local K `num_features'
 
 end
 
 *===============================================================================
-* Python helper functions
+* Python helper function
 *===============================================================================
 
 version 16.0
@@ -573,17 +579,16 @@ def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_spl
 		Scalar.setValue("e(test_accuracy)", outsample_accuracy, vtype='visible')
 
 	# If applicable, feature importance
-	if 0==1:
+	if 1==1:
 		feature_importances = DataFrame(model.feature_importances_,
 										index = features,
 										columns=['importance']).sort_values('importance', ascending=False)
 		z = feature_importances.shape
 		importance = list(model.feature_importances_)
-		Matrix.create("importance", z[0], z[1], -1)
-		Matrix.setColNames("importance",['importance'])
-		Matrix.setRowNames("importance",list(features.values))
-		# print(importance[0])
+		Matrix.create("e(importance)", z[0], z[1], -1)
+		Matrix.setColNames("e(importance)",['importance'])
+		Matrix.setRowNames("e(importance)",list(features.values))
 		for i in range(z[0]):
-			Matrix.storeAt("importance",i,0,importance[i])
+			Matrix.storeAt("e(importance)",i,0,importance[i])
 	
 end

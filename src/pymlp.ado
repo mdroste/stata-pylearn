@@ -1,4 +1,4 @@
-*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.63, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pymlp.ado
@@ -81,7 +81,10 @@ if ~inlist("`activation'","identity","logistic","tanh","relu") {
 
 *--------------
 * solver: solver for weight optimization
-if "`solver'"=="" local solver "adam"
+if "`solver'"=="" {
+	local no_solver_specified = 1
+	local solver "adam"
+}
 if ~inlist("`solver'","lbfgs","sgd","adam") {
 	di as error "Syntax error: solver() must be one of: lbfgs, sgd, or adam (was `max_depth')"
 	exit 1
@@ -268,6 +271,11 @@ local nonempty_test = `num_obs_test'>0
 
 * Get number of hidden layers, obs per unit
 
+* REVISIT SOLVER SETTING: if no_solver_specified and num_obs_train<10000, use lbfgs
+if `no_solver_specified'==1 & `num_obs_train'<100000 {
+	local solver lbfgs
+}
+
 *-------------------------------------------------------------------------------
 * If type(regress), run regression model
 *-------------------------------------------------------------------------------
@@ -304,8 +312,6 @@ python: run_mlp( ///
 	`epsilon', ///
 	`n_iter_no_change', `standardize')
 
-
-noi di "HIDDEN LAYER SIZES: `hidden_layer_sizes'"
 *------------------------------------------------------------------------------------
 * Format output
 *------------------------------------------------------------------------------------
@@ -405,10 +411,23 @@ if "`needs_encoding'"=="yes" {
 	rename `prediction'_2 `prediction'
 }
 
+*-------------------------------------------------------------------------------
 * Return stuff to e class
-*ereturn matrix importance = temp1e
+*-------------------------------------------------------------------------------
+
+* Count features so I can return it
+local K = 0
+foreach v of varlist `xvars' {
+	local K = `K'+1
+}
+
+* Store as locals
 ereturn local predict "pylearn_predict"
-global features "`xvars'"
+ereturn local features "`xvars'"
+ereturn local N `num_obs_train'
+ereturn local N_test `num_obs_test'
+ereturn local K `num_features'
+
 
 
 end
@@ -497,7 +516,6 @@ def run_mlp(type, vars, training, hidden_layer_sizes, activation, solver, alpha,
 	if type=="classify":
 		model = MLPClassifier(hidden_layer_sizes=hidden_layer_sizes, activation=activation, solver=solver, alpha=alpha, batch_size=batch_size, learning_rate=learning_rate, learning_rate_init=learning_rate_init, power_t=power_t, max_iter=max_iter, shuffle=shuffle, random_state=random_state, tol=tol, verbose=verbose, warm_start=warm_start,momentum=momentum, nesterovs_momentum=nesterovs_momentum, early_stopping=early_stopping, validation_fraction=validation_fraction, beta_1=beta_1, beta_2=beta_2, epsilon=epsilon, n_iter_no_change=n_iter_no_change)
 
-	print(model)
 	#-------------------------------------------------------------
 	# Fit model, get predictions
 	#-------------------------------------------------------------

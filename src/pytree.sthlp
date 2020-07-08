@@ -1,8 +1,9 @@
 {smcl}
-{* *! version 0.60 8jul2020}{...}
+{* *! version 0.63 8jul2020}{...}
 {viewerjumpto "Syntax" "pytree##syntax"}{...}
 {viewerjumpto "Description" "pytree##description"}{...}
 {viewerjumpto "Options" "pytree##options"}{...}
+{viewerjumpto "Stored results" "pyforest##results"}{...}
 {viewerjumpto "Examples" "pytree##examples"}{...}
 {viewerjumpto "Author" "pytree##author"}{...}
 {viewerjumpto "Acknowledgements" "pytree##acknowledgements"}{...}
@@ -53,7 +54,7 @@
 
 {pstd} Note that {opt pytree} relies on the Python integration functionality introduced with Stata 16. Therefore, users will need Stata 16, Python (preferably 3.x), and the scikit-learn library installed in order to run this ado-file.
 
-{pstd} For more information on pytree, refer to the GitHub page for pylearn at {browse "https:/www.github.com/mdroste/stata-pylearn":https:/www.github.com/mdroste/stata-pylearn}
+{pstd} For more information on pytree, refer to the pylearn GitHub page: {browse "https:/www.github.com/mdroste/stata-pylearn":https:/www.github.com/mdroste/stata-pylearn}.
 
  
 {marker options}{...}
@@ -98,6 +99,30 @@
 
 {phang}
 {opt min_impurity_decrease(#)} determines the threshold such tha a node is split if it induces a decrease in impurity criterion greater than or equal to this value. By default, this is 0. 
+
+
+{marker results}{...}
+{title:Stored results}
+
+{synoptset 24 tabbed}{...}
+{syntab:Scalars}
+{synopt:{cmd:e(N)}}number of observations in training sample{p_end}
+{synopt:{cmd:e(N_test)}}number of observations in test sample{p_end}
+{synopt:{cmd:e(K)}}number of features{p_end}
+{synopt:{cmd:e(training_rmse)}}root mean squared error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_rmse)}}root mean squared error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_mae)}}mean absolute error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_mae)}}mean absolute error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_accuracy)}}accuracy on training data, if type(classify){p_end}
+{synopt:{cmd:e(test_accuracy)}}accuracy on test data, if type(classify) and training() specified{p_end}
+
+{synoptset 24 tabbed}{...}
+{syntab:Macros}
+{synopt:{cmd:e(features)}}List of feature names{p_end}
+
+{synoptset 24 tabbed}{...}
+{syntab:Matrices}
+{synopt:{cmd:e(importance)}}Variable importance scores{p_end}
 
 
 {marker examples}{...}

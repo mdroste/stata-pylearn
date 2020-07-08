@@ -1,8 +1,9 @@
 {smcl}
-{* *! version 0.60 8jul2020}{...}
+{* *! version 0.63 8jul2020}{...}
 {viewerjumpto "Syntax" "pyadaboost##syntax"}{...}
 {viewerjumpto "Description" "pyadaboost##description"}{...}
 {viewerjumpto "Options" "pyadaboost##options"}{...}
+{viewerjumpto "Stored results" "pyforest##results"}{...}
 {viewerjumpto "Examples" "pyadaboost##examples"}{...}
 {viewerjumpto "Author" "pyadaboost##author"}{...}
 {viewerjumpto "Acknowledgements" "pyadaboost##acknowledgements"}{...}
@@ -81,6 +82,26 @@
 
 {phang}
 {opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. 
+
+
+{marker results}{...}
+{title:Stored results}
+
+{synoptset 24 tabbed}{...}
+{syntab:Scalars}
+{synopt:{cmd:e(N)}}number of observations in training sample{p_end}
+{synopt:{cmd:e(N_test)}}number of observations in test sample{p_end}
+{synopt:{cmd:e(K)}}number of features{p_end}
+{synopt:{cmd:e(training_rmse)}}root mean squared error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_rmse)}}root mean squared error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_mae)}}mean absolute error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_mae)}}mean absolute error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_accuracy)}}accuracy on training data, if type(classify){p_end}
+{synopt:{cmd:e(test_accuracy)}}accuracy on test data, if type(classify) and training() specified{p_end}
+
+{synoptset 24 tabbed}{...}
+{syntab:Macros}
+{synopt:{cmd:e(features)}}List of feature names{p_end}
 
 
 {marker examples}{...}

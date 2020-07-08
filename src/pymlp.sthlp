@@ -1,12 +1,12 @@
 {smcl}
-{* *! version 0.60 8jul2020}{...}
+{* *! version 0.63 8jul2020}{...}
 {viewerjumpto "Syntax" "pymlp##syntax"}{...}
 {viewerjumpto "Description" "pymlp##description"}{...}
 {viewerjumpto "Options" "pymlp##options"}{...}
+{viewerjumpto "Stored results" "pyforest##results"}{...}
 {viewerjumpto "Examples" "pymlp##examples"}{...}
 {viewerjumpto "Author" "pymlp##author"}{...}
 {viewerjumpto "Acknowledgements" "pymlp##acknowledgements"}{...}
-{viewerjumpto "References" "pymlp##references"}{...}
 {title:Title}
  
 {p2colset 5 14 21 2}{...}
@@ -139,6 +139,26 @@
 
 {phang}
 {opt random_state(integer)} sets a random seed for both the drawing of training data (if applicable) and the MLP solving, if a stochastic solver is specified.
+
+
+{marker results}{...}
+{title:Stored results}
+
+{synoptset 24 tabbed}{...}
+{syntab:Scalars}
+{synopt:{cmd:e(N)}}number of observations in training sample{p_end}
+{synopt:{cmd:e(N_test)}}number of observations in test sample{p_end}
+{synopt:{cmd:e(K)}}number of features{p_end}
+{synopt:{cmd:e(training_rmse)}}root mean squared error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_rmse)}}root mean squared error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_mae)}}mean absolute error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_mae)}}mean absolute error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_accuracy)}}accuracy on training data, if type(classify){p_end}
+{synopt:{cmd:e(test_accuracy)}}accuracy on test data, if type(classify) and training() specified{p_end}
+
+{synoptset 24 tabbed}{...}
+{syntab:Macros}
+{synopt:{cmd:e(features)}}List of feature names{p_end}
 
 
 {marker examples}{...}

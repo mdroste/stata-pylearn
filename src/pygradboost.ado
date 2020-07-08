@@ -1,4 +1,4 @@
-*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.63, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pygradboost.ado
@@ -365,12 +365,22 @@ noi di in gr "Type {help pygradboost:help pygradboost} to access the pygradboost
 noi di "{hline 80}"
 
 *-------------------------------------------------------------------------------
-* Return to e class
+* Return stuff to e class
 *-------------------------------------------------------------------------------
 
-* Return stuff to e class
+* Count features so I can return it
+local K = 0
+foreach v of varlist `xvars' {
+	local K = `K'+1
+}
+
+* Store as locals
 ereturn local predict "pylearn_predict"
-global features "`xvars'"
+ereturn local features "`xvars'"
+ereturn local N `num_obs_train'
+ereturn local N_test `num_obs_test'
+ereturn local K `num_features'
+
 
 end
 

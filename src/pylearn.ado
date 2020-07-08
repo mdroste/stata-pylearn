@@ -18,6 +18,8 @@ syntax, [Upgrade examples Setup Check]
 if "`upgrade'"=="" & "`examples'"=="" & "`setup'"=="" & "`check'"=="" {
     di "No options were specified. The pylearn program doesn't do anything on its own."
     di "See the help file ({stata help pylearn}) for more information."
+    di "Upgrade to the latest version with {stata pylearn, upgrade}"
+    di "Check for Python prerequisites with {stata pylearn, setup}"
 }
 
 *-------------------------------------------------------------------------------

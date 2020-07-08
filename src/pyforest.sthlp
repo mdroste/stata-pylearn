@@ -1,8 +1,9 @@
 {smcl}
-{* *! version 0.60 8jul2020}{...}
+{* *! version 0.63 8jul2020}{...}
 {viewerjumpto "Syntax" "pyforest##syntax"}{...}
 {viewerjumpto "Description" "pyforest##description"}{...}
 {viewerjumpto "Options" "pyforest##options"}{...}
+{viewerjumpto "Stored results" "pyforest##results"}{...}
 {viewerjumpto "Examples" "pyforest##examples"}{...}
 {viewerjumpto "Author" "pyforest##author"}{...}
 {viewerjumpto "Acknowledgements" "pyforest##acknowledgements"}{...}
@@ -56,7 +57,7 @@
 
 {pstd} In particular, {opt pyforest} implements the random forest algorithm as a wrapper around the Python modules sklearn.ensemble randomForestClassifier and sklearn.ensemble.randomForestRegression, distributed as components of the scikit-learn Python library.
 
-{pstd} {opt pyforest} relies critically on the Python integration functionality introduced with Stata 16. Therefore, users will need Stata 16, Python (preferably 3.x), and the scikit-learn library installed in order to run.
+{pstd} {opt pyforest} relies critically on the Python integration functionality introduced with Stata 16. Therefore, users will need Stata 16, Python 3.6+, and the scikit-learn library installed in order to run.
 
 {pstd} For more information on pyforest, refer to the pylearn GitHub page: {browse "https:/www.github.com/mdroste/stata-pylearn":https:/www.github.com/mdroste/stata-pylearn}.
 
@@ -107,6 +108,30 @@
 
 {phang}
 {opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. 
+
+
+{marker results}{...}
+{title:Stored results}
+
+{synoptset 24 tabbed}{...}
+{syntab:Scalars}
+{synopt:{cmd:e(N)}}number of observations in training sample{p_end}
+{synopt:{cmd:e(N_test)}}number of observations in test sample{p_end}
+{synopt:{cmd:e(K)}}number of features{p_end}
+{synopt:{cmd:e(training_rmse)}}root mean squared error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_rmse)}}root mean squared error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_mae)}}mean absolute error on training data, if type(regress){p_end}
+{synopt:{cmd:e(test_mae)}}mean absolute error on test data, if type(regress) and training() specified{p_end}
+{synopt:{cmd:e(training_accuracy)}}accuracy on training data, if type(classify){p_end}
+{synopt:{cmd:e(test_accuracy)}}accuracy on test data, if type(classify) and training() specified{p_end}
+
+{synoptset 24 tabbed}{...}
+{syntab:Macros}
+{synopt:{cmd:e(features)}}List of feature names{p_end}
+
+{synoptset 24 tabbed}{...}
+{syntab:Matrices}
+{synopt:{cmd:e(importance)}}Variable importance scores{p_end}
 
 
 {marker examples}{...}
