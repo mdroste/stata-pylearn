@@ -515,7 +515,7 @@ random.seed(50)
 # Define Python function: run_random_forest
 #-------------------------------------------------------------------------------
 
-def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_split,min_samples_leaf,min_weight_fraction_leaf,max_features,max_leaf_nodes,min_impurity_decrease,bootstrap,oob_score,n_jobs,random_state,verbose,warm_start,class_weight,prediction,training,importance,nonempty_test):
+def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_split,min_samples_leaf,min_weight_fraction_leaf,max_features,max_leaf_nodes,min_impurity_decrease,bootstrap,oob_score,n_jobs,random_state,verbose,warm_start,class_weight,prediction,training,importance,nonempty_test, standardize):
 
 	#-------------------------------------------------------------
 	# Load data from Stata into Python
