@@ -78,11 +78,26 @@ pylearn, upgrade
 ```
 
 
-Examples
+Usage
 ---------------------------------
 
-The Stata internal documentation for each file contains a list of minimal working examples for each program.
-  
+Using pylearn is simple, since the syntax for each component looks very similar to other commands for model estimaation in Stata. Notably, calls to pylearn porograms must specify an option called type() that specifies whether the model will be used for classification or regression.
+
+Here is a quick example producing a random forest with the pylearn component pyforest:
+
+```stata
+* Load dataset of cars
+sysuse auto, clear
+
+* Estimate random forest regression model, training on foreign cars, save predictions as price_predicted
+pyforest price mpg trunk weight, type(regress) training(foreign) prediction(price_predicted)
+```
+
+Detailed documentation and usage examples are provided with each Stata file. For instance, to view more examples, type:
+```stata
+help pyforest
+```
+
 
 Todo
 ---------------------------------
