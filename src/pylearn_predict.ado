@@ -1,10 +1,9 @@
+*! Version 0.63, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * FILE: pylearn_predict.ado
 * PURPOSE: Enables post-estimation -predict- command to obtain fitted values
 *   from pylearn
-* SEE ALSO: pyada.ado
-* GITHUB: https://github.com/mdroste/stata-pylearn
-* AUTHOR: Michael Droste
 *===============================================================================
 
 program define pylearn_predict, eclass
