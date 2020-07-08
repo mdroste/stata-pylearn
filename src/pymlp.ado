@@ -338,9 +338,9 @@ noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
 noi di in gr "Number of features  = " in ye `num_features' _continue
 noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
 noi di in gr "Training identifier = " in ye "`training_di'"
-no di in gr  "Standardized: " in ye "`stdize_fmt'"
+no di in gr  "Standardized        =" in ye "`stdize_fmt'"
 noi di " "
-noi di in gr "{ul:Neural network settings}"
+noi di in gr "{ul:Neural network options}"
 di in gr "Hidden layers:           " in ye `num_layers' 
 di in gr "Nodes per layer:         " in ye "`hidden_layer_sizes'"
 di in gr "Activation function:     " in ye "`activation'"
@@ -361,7 +361,6 @@ noi di in gr "{ul:Output}"
 
 * Only display if convergence achieved
 if $pymlp_convergence_err==0 {
-	noi di in gr "Prediction: " in ye "`prediction_di'"
 	if "`type'"=="regress" {
 		noi di in gr "Training RMSE       = " in ye `is_rmse'
 		*noi di in gr "Training MAE        = " in ye `is_mae'
@@ -385,7 +384,7 @@ else {
 }
 
 noi di " "
-noi di in gr "Type {help pymlp:help pymlp} to access the pymlp documentation."
+noi di in gr "Type {help pymlp:help pymlp} to access the documentation."
 noi di "{hline 80}"
 
 *-------------------------------------------------------------------------------
@@ -424,9 +423,10 @@ foreach v of varlist `xvars' {
 * Store as locals
 ereturn local predict "pylearn_predict"
 ereturn local features "`xvars'"
-ereturn local N `num_obs_train'
-ereturn local N_test `num_obs_test'
-ereturn local K `num_features'
+ereturn local type "`type'"
+ereturn scalar N = `num_obs_train'
+ereturn scalar N_test = `num_obs_test'
+ereturn scalar K = `num_features'
 
 
 

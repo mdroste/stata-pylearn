@@ -83,7 +83,7 @@ Usage
 
 Using pylearn is simple, since the syntax for each component looks very similar to other Stata modeling commands.
 
-Here is a quick example producing a random forest with pylearn's 'pyforest' command:
+Here is a quick example of a random forest regression with pylearn's 'pyforest' command:
 
 ```stata
 * Load auto dataset
@@ -93,6 +93,13 @@ sysuse auto, clear
 * Train only on cars with foreign==1 and test on foreign==0
 pyforest price mpg trunk weight, type(regress) training(foreign)
 predict price_predicted
+
+* We can also use Stata-like 'if' conditions to specify the training sample, but we won't get out-of-sample RMSE in that case
+pyforest price mpg trunk weight if foreign==1, type(regress) 
+predict price_predicted_2
+
+* Pyforest chooses defaults automatically, but you can use any hyperparameter scikit-learn can
+pyforest price mpg trunk weight, type(regress) training(foreign) max_depth(5) min_samples_split(4)
 ```
 
 Detailed documentation and usage examples are provided with each Stata file. For instance, see:

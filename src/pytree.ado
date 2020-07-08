@@ -334,7 +334,7 @@ noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
 noi di in gr "Training identifier = " in ye "`training_di'"
 no di in gr  "Standardized: " in ye "`stdize_fmt'"
 noi di " "
-noi di in gr "{ul:Decision tree settings}"
+noi di in gr "{ul:Options}"
 noi di in gr "Max tree depth      = " in ye "`max_depth'" _continue
 noi di in gr _col(41) "Min obs/leaf              = " in ye "`min_samples_leaf'"
 noi di in gr "Max features/tree   = " in ye "`max_features_di'" _continue
@@ -345,7 +345,6 @@ noi di in gr "Split criterion     = " in ye "`criterion'" _continue
 noi di in gr _col(41) "Min impurity decrease     = " in ye "`min_impurity_decrease'"
 noi di " "
 noi di in gr "{ul:Output}"
-noi di in gr "Prediction: " in ye "`prediction_di'"
 if "`type'"=="regress" {
 	noi di in gr "Training RMSE       = " in ye `is_rmse'
 	*noi di in gr "Training MAE        = " in ye `is_mae'
@@ -402,9 +401,10 @@ foreach v of varlist `xvars' {
 * Store as locals
 ereturn local predict "pylearn_predict"
 ereturn local features "`xvars'"
-ereturn local N `num_obs_train'
-ereturn local N_test `num_obs_test'
-ereturn local K `num_features'
+ereturn local type "`type'"
+ereturn scalar N = `num_obs_train'
+ereturn scalar N_test = `num_obs_test'
+ereturn scalar K = `num_features'
 
 
 end

@@ -251,11 +251,11 @@ noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
 noi di in gr "Number of features  = " in ye `num_features' _continue
 noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
 noi di in gr "Training identifier = " in ye "`training_di'"
-no di in gr  "Standardized: " in ye "`stdize_fmt'"
+no di in gr  "Standardized        =" in ye "`stdize_fmt'"
 noi di " "
-noi di in gr "{ul:AdaBoost settings}"
-noi di in gr "Number of trees     = " in ye "`n_estimators'" 
-noi di in gr "Learning rate       = " in ye "`learning_rate'"
+noi di in gr "{ul:Options}"
+noi di in gr "Number of estimators = " in ye "`n_estimators'" 
+noi di in gr "Learning rate        = " in ye "`learning_rate'"
 
 if "`type'"=="regress"  noi di in gr "Loss function       = " in ye "`loss'"
 if "`type'"=="classify" noi di in gr "Boosting algorithm  = " in ye "`algorithm'"
@@ -268,7 +268,7 @@ if "`type'"=="regress"  & `nonempty_test'==1 noi di in gr "Validation RMSE     =
 if "`type'"=="classify" & `nonempty_test'==1 noi di in gr "Validation accuracy = " in ye `e(test_accuracy)'
 
 noi di " "
-noi di in gr "Type {help pyada:help pyada} to access the pyada documentation."
+noi di in gr "Type {help pyadaboost:help pyadaboost} to access the documentation."
 noi di "{hline 80}"
 
 *-------------------------------------------------------------------------------
@@ -284,9 +284,10 @@ foreach v of varlist `xvars' {
 * Store as locals
 ereturn local predict "pylearn_predict"
 ereturn local features "`xvars'"
-ereturn local N `num_obs_train'
-ereturn local N_test `num_obs_test'
-ereturn local K `num_features'
+ereturn local type "`type'"
+ereturn scalar N = `num_obs_train'
+ereturn scalar N_test = `num_obs_test'
+ereturn scalar K = `num_features'
 
 end
 
