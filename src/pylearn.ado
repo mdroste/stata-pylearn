@@ -38,6 +38,21 @@ if "`upgrade'"!="" {
 if "`setup'"!="" {
 
     *-----------------------------------------------------
+    * Check for Stata
+    *-----------------------------------------------------
+
+    * First: Check to see if we have Python, and it is version 3 or above
+    qui python query
+    local python_path = r(execpath)
+    local python_vers = r(version)
+    if "`python_path'"=="" {
+        di as error "Error: No python path found! Do you have Python 3.6+ installed?"
+        di as error "Please refer to the installation instructions on Github:"
+        di as error "https://github.com/mdroste/stata-pylearn/blob/master/docs/install.md"
+        exit 1
+    }
+
+    *-----------------------------------------------------
     * Check for modules
     *-----------------------------------------------------
 
@@ -122,7 +137,7 @@ if "`setup'"!="" {
             python: install_mod("`python_path'","`modname'")
             if `pf_install'==0 {
                 di as error "  Error: Could not install `modname' automatically. You may need to install it manually."
-                di as error "  Please see the help file ({help pyforest_setup:help pyforest_setup}) for more info."
+                di as error "  Please see the help file ({help pylearn}) for more info."
                 exit 1
             }
         }
@@ -135,7 +150,7 @@ if "`setup'"!="" {
             python: install_mod("`python_path'","`modname'")
             if `pf_install'==0 {
                 di as error "  Error: Could not install `modname' automatically. You may need to install it manually."
-                di as error "  Please see the help file ({help pyforest_setup:help pyforest_setup}) for more info."
+                di as error "  Please see the help file ({help pylearn}) for more info."
                 exit 1
             }
         }
@@ -148,7 +163,7 @@ if "`setup'"!="" {
             python: install_mod("`python_path'","`modname'")
             if `pf_install'==0 {
                 di as error "  Error: Could not install `modname' automatically. You may need to install it manually."
-                di as error "  Please see  for more info."
+                di as error "  Please see the help file ({help pylearn}) for more info."
                 exit 1
             }
         }
@@ -160,7 +175,7 @@ if "`setup'"!="" {
     *-----------------------------------------------------
         
     di in gr " "
-    di in gr "Done! All prerequisites for pyforest are installed."
+    di in gr "Done! All prerequisites for pylearn are installed."
     di in gr "You may need to restart Stata for any installed Python modules to become available."
     di in gr " "
 
