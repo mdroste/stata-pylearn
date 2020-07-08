@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.63 8jul2020}{...}
+{* *! version 0.65 8jul2020}{...}
 {viewerjumpto "Syntax" "pyforest##syntax"}{...}
 {viewerjumpto "Description" "pyforest##description"}{...}
 {viewerjumpto "Options" "pyforest##options"}{...}
@@ -71,6 +71,12 @@
 {opth type(string)} declares whether this is a regression or classification problem. In general, type(classify) is more appropriate when the dependent variable is categorical, and type(regression) is more appropriate when the dependent variable is continuous.
 
 
+{dlgtab:Pre-processing}
+
+{phang}
+{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. If this option is specified, frac_training() is ignored.
+
+
 {dlgtab:Random forest options}
  
 {phang}
@@ -136,8 +142,6 @@
 
 {marker examples}{...}
 {title:Examples}
- 
-{pstd}See the Github page.{p_end}
 
 {pstd}{bf:Example 1}: Classification with random forests, saving predictions as a new variable called iris_prediction{p_end}
 {phang2} Load data{p_end}

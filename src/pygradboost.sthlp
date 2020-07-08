@@ -1,9 +1,9 @@
 {smcl}
-{* *! version 0.63 8jul2020}{...}
+{* *! version 0.65 8jul2020}{...}
 {viewerjumpto "Syntax" "pygradboost##syntax"}{...}
 {viewerjumpto "Description" "pygradboost##description"}{...}
 {viewerjumpto "Options" "pygradboost##options"}{...}
-{viewerjumpto "Stored results" "pyforest##results"}{...}
+{viewerjumpto "Stored results" "pygradboost##results"}{...}
 {viewerjumpto "Examples" "pygradboost##examples"}{...}
 {viewerjumpto "Author" "pygradboost##author"}{...}
 {viewerjumpto "Acknowledgements" "pygradboost##acknowledgements"}{...}
@@ -25,6 +25,9 @@
 {syntab :Main}
 {synopt :{opt type(string)}}{it:string} may be {bf:regress} or {bf:classify}.{p_end}
 
+{syntab :Pre-processing}
+{synopt :{opt training(varname)}}varname is an indicator for the training sample{p_end}
+
 {syntab :Gradient Boosting options}
 {synopt :{opt n_estimators(#)}}Number of boosting stages{p_end}
 {synopt :{opt loss(string)}}Loss function when updating weights{p_end}
@@ -43,9 +46,6 @@
 {synopt :{opt n_iter_no_change(#)}}Stops early if # iterations without change in fit on a validation subsample{p_end}
 {synopt :{opt validation_fraction(#)}}Fraction of training data to set aside for validation when n_iter_no_change specified{p_end}
 {synopt :{opt tol(#)}}Tolerance threshold for early stopping when n_iter_no_change specified{p_end}
-
-{syntab :Training options}
-{synopt :{opt training(varname)}}varname is an indicator for the training sample{p_end}
 
 {synoptline}
 {p 4 6 2}
@@ -73,6 +73,12 @@
  
 {phang}
 {opth type(string)} declares whether this is a regression or classification problem. In general, type(classify) is more appropriate when the dependent variable is categorical, and type(regression) is more appropriate when the dependent variable is continuous.
+
+
+{dlgtab:Pre-processing}
+
+{phang}
+{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. If this option is specified, frac_training() is ignored.
 
 
 {dlgtab:Adaptive boosting options}
@@ -129,12 +135,6 @@
 {opt tol(#)} is a tolerance threshold for early stopping. When the loss is not improving by at least tol(#) for n_iter_no_change iterations (see above), training stops. Default is tol(0.0001).
 
 
-{dlgtab:Training data options}
-
-{phang}
-{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. 
-
-
 {marker results}{...}
 {title:Stored results}
 
@@ -157,8 +157,6 @@
 
 {marker examples}{...}
 {title:Examples}
- 
-{pstd}See the {browse "https://www.github.com/mdroste/stata-pylearn/":pylearn GitHub page} for additional examples.{p_end}
 
 {pstd}{bf:Example 1}: Classification with gradient boosting, saving predictions as a new variable called iris_prediction{p_end}
 {phang2} Load data{p_end}

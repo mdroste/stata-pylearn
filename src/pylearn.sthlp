@@ -22,10 +22,10 @@ Please run {stata pylearn, upgrade} to upgrade to the latest release.
 {manhelp pytree R:pytree} estimates decision trees. {p_end}
 
 {p 8 17 2}
-{manhelp pylearn R:pylearn} estimates random forests. {p_end}
+{manhelp pyforest R:pyforest} estimates random forests. {p_end}
 
 {p 8 17 2}
-{manhelp pymlp R:pymlp} estimates multi-layer perceptrons (neural-networks). {p_end}
+{manhelp pymlp R:pymlp} estimates multi-layer perceptrons (feed-forward neural networks). {p_end}
 
 {p 8 17 2}
 {manhelp pyadaboost R:pyadaboost} estimates adaptive boosted trees/regressions (AdaBoost). {p_end}
@@ -44,7 +44,6 @@ Please run {stata pylearn, upgrade} to upgrade to the latest release.
 {synoptline}
 {synopt :{opt u:pgrade}} Upgrade to the latest version of pylearn{p_end}
 {synopt :{opt s:etup}} Check to see if Python prerequisites are satisfied{p_end}
-{synopt :{opt examples}} Print examples{p_end}
 {synoptline}
 {p 4 6 2}
 {p_end}
@@ -71,10 +70,7 @@ Please run {stata pylearn, upgrade} to upgrade to the latest release.
 {opt upgrade} upgrades pylearn to the latest release from the project GitHub page.
 
 {phang}
-{opt setup} checks to see whether the Python prerequisites for this package are satisfied.
-
-{phang}
-{opt examples} prints a few examples using pylearn commands.
+{opt setup} checks to see whether your computer has the prerequisite Python packages, and tries to install them automatically if not. 
 
 
 {marker author}{...}

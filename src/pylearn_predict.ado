@@ -22,7 +22,7 @@ program define pylearn_predict, eclass
 	
 	* Define locals prediction, features
 	local predict_var "`arg'"
-	local features "${features}"
+	local features "`e(features)'"
 	
 	* Check to see if variable exists
 	cap confirm new variable `predict_var'

@@ -322,7 +322,6 @@ local os_rmse: di %10.4f `e(test_rmse)'
 local os_mae: di %10.4f `e(test_mae)'
 local train_obs_f: di %10.0fc `num_obs_train'
 local test_obs_f: di %10.0fc `num_obs_test'
-noi di "Train obs f: `train_obs_f'"
 
 * Format/truncate dependent variable name
 local yvarlen = length("`yvar'")
@@ -340,24 +339,26 @@ noi di "{hline 80}"
 noi di in ye "Gradient boosted `type_str'"
 noi di " "
 noi di in gr "{ul:Data}"
-noi di in gr "Dependent variable  = " in ye "`yvar_fmt'" _continue
-noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
-noi di in gr "Number of features  = " in ye `num_features' _continue
-noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
-noi di in gr "Training identifier = " in ye "`training_di'"
+noi di in gr "Dependent variable    = " in ye "`yvar_fmt'" _continue
+noi di in gr _col(41) "Number of training obs   =" _continue
+noi di in ye "`train_obs_f'"
+noi di in gr "Number of features    = " in ye `num_features' _continue
+noi di in gr _col(41) "Number of validation obs =" _continue
+noi di in ye "`test_obs_f'"
+noi di in gr "Training identifier   = " in ye "`training_di'"
 noi di " "
 noi di in gr "{ul:Options}"
-noi di in gr "Number of estimators = " in ye "`n_estimators'" 
-noi di in gr "Learning rate        = " in ye "`learning_rate'"
-noi di in gr "Loss function        = " in ye "`loss'"
-noi di in gr _col(41) "Min obs/leaf              = " in ye "`min_samples_leaf'"
-noi di in gr "Max features/tree    = " in ye "`max_features_di'" _continue
-noi di in gr _col(41) "Min obs/interior node     = " in ye "`min_samples_split'"
-noi di in gr "Max leaf nodes       = " in ye "`max_leaf_nodes'" _continue
-noi di in gr _col(41) "Min weight fraction/leaf  = " in ye "`min_weight_fraction_leaf'"
-noi di in gr "Split criterion      = " in ye "`criterion'" _continue
-noi di in gr _col(41) "Min impurity decrease     = " in ye "`min_impurity_decrease'"
-noi di in gr "Random number seed   = " in ye "`seed_di'"
+noi di in gr "Number of estimators  = " in ye "`n_estimators'" _continue
+noi di in gr _col(41)  "Loss function            = " in ye "`loss'"
+noi di in gr "Learning rate         = " in ye "`learning_rate'" _continue
+noi di in gr _col(41) "Split criterion          = " in ye "`criterion'"
+noi di in gr "Min impurity decrease = " in ye "`min_impurity_decrease'" _continue
+noi di in gr _col(41) "Min obs/interior node    = " in ye "`min_samples_split'"
+noi di in gr "Max features/tree     = " in ye "`max_features_di'" _continue
+noi di in gr _col(41) "Min obs/leaf             = " in ye "`min_samples_leaf'"
+noi di in gr "Max leaf nodes        = " in ye "`max_leaf_nodes'" _continue
+noi di in gr _col(41) "Min weight fraction/leaf = " in ye "`min_weight_fraction_leaf'"
+noi di in gr "Random number seed    = " in ye "`seed_di'"
 noi di " "
 noi di in gr "{ul:Output}"
 if "`type'"=="regress"  noi di in gr "Training RMSE       = " in ye `is_rmse'

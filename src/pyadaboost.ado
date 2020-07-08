@@ -234,7 +234,6 @@ local os_rmse: di %10.4f `e(test_rmse)'
 local os_mae: di %10.4f `e(test_mae)'
 local train_obs_f: di %10.0fc `num_obs_train'
 local test_obs_f: di %10.0fc `num_obs_test'
-noi di "Train obs f: `train_obs_f'"
 
 * Format/truncate dependent variable name
 local yvarlen = length("`yvar'")
@@ -253,17 +252,19 @@ noi di in ye "Adaptive boosted `type_str'"
 noi di " "
 noi di in gr "{ul:Data}"
 noi di in gr "Dependent variable  = " in ye "`yvar_fmt'" _continue
-noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
+noi di in gr _col(41) "Number of training obs   =" _continue
+noi di in ye "`train_obs_f'"
 noi di in gr "Number of features  = " in ye `num_features' _continue
-noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
+noi di in gr _col(41) "Number of validation obs =" _continue
+noi di in ye "`test_obs_f'"
 noi di in gr "Training identifier = " in ye "`training_di'"
 noi di " "
 noi di in gr "{ul:Options}"
 noi di in gr "Number of estimators = " in ye "`n_estimators'" _continue
-if "`type'"=="regress"  noi di in gr _col(41) "Loss function       = " in ye "`loss'"
-if "`type'"=="classify" noi di in gr _col(41) "Boosting algorithm  = " in ye "`algorithm'"
+if "`type'"=="regress"  noi di in gr _col(41) "Loss function            = " in ye "`loss'"
+if "`type'"=="classify" noi di in gr _col(41) "Boosting algorithm       = " in ye "`algorithm'"
 noi di in gr "Learning rate        = " in ye "`learning_rate'" _continue
-noi di in gr _col(41) "Random number seed  = " in ye "`seed_di'"
+noi di in gr _col(41) "Random number seed       = " in ye "`seed_di'"
 noi di " "
 noi di in gr "{ul:Output}"
 if "`type'"=="regress"  noi di in gr "Training RMSE       = " in ye `is_rmse'

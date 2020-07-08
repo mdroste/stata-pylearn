@@ -1,9 +1,9 @@
 {smcl}
-{* *! version 0.63 8jul2020}{...}
+{* *! version 0.65 8jul2020}{...}
 {viewerjumpto "Syntax" "pymlp##syntax"}{...}
 {viewerjumpto "Description" "pymlp##description"}{...}
 {viewerjumpto "Options" "pymlp##options"}{...}
-{viewerjumpto "Stored results" "pyforest##results"}{...}
+{viewerjumpto "Stored results" "pymlp##results"}{...}
 {viewerjumpto "Examples" "pymlp##examples"}{...}
 {viewerjumpto "Author" "pymlp##author"}{...}
 {viewerjumpto "Acknowledgements" "pymlp##acknowledgements"}{...}
@@ -28,7 +28,6 @@
 
 {syntab :Pre-processing}
 {synopt :{opt training(varname)}}Use varname as indicator for training sample{p_end}
-{synopt :{opt standardize}}Standardize features to mean zero and unit variance in training data{p_end}
  
 {syntab :Network options}
 {synopt :{opt hidden_layer_sizes(tuple)}}Tuple containing number of neurons in each hidden layer{p_end}
@@ -76,6 +75,12 @@
  
 {phang}
 {opth type(string)} declares whether this is a regression or classification problem. In general, type(classify) is more appropriate when the dependent variable is categorical, and type(regression) is more appropriate when the dependent variable is continuous.
+
+
+{dlgtab:Pre-processing}
+
+{phang}
+{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. If this option is specified, frac_training() is ignored.
 
 
 {dlgtab: Network options}
@@ -129,12 +134,6 @@
 {opt n_iter_no_change(integer)} Maximum number of iterations (epochs) to allow the solver to not meet tol() improvement. This option is only effective with one of the stochastic solvers, solver("sgd") or solver("adam").
 
 
-{dlgtab:Training options}
-
-{phang}
-{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. If this option is specified, frac_training() is ignored.
-
-
 {dlgtab:Miscellaneous options}
 
 {phang}
@@ -163,18 +162,32 @@
 
 {marker examples}{...}
 {title:Examples}
- 
-{pstd}See the Github page.{p_end}
 
-{pstd}Example 1: Classification with MLP neural network: 2 hidden layers, 5 nodes in layer 1, 3 nodes in layer 2{p_end}
-{phang2}. {stata webuse iris, clear}{p_end}
-{phang2}. {stata pymlp iris seplen sepwid petlen petwid, type(classify) solver(lbfgs) hidden_layer_sizes(5,2)}{p_end}
-{phang2}. {stata predict iris_predicted, clear}{p_end}
+{pstd}Example 1: Classification with MLP: one hidden layer{p_end}
+{phang2} Load data{p_end}
+{phang3} {stata webuse iris, clear}{p_end}
+{phang2} Run model with 1 hidden layer, 5 nodes{p_end}
+{phang3} {stata pymlp iris seplen sepwid petlen petwid, type(classify) hidden_layer_sizes(5)}{p_end}
+{phang2} Save predictions out to variable iris_predicted{p_end}
+{phang3} {stata predict iris_predicted}{p_end}
 
-{pstd}Example 2: Classification with MLP neural network, more options{p_end}
-{phang2}. {stata webuse iris, clear}{p_end}
-{phang2}. {stata gen training = runiform()<0.3}{p_end}
-{phang2}. {stata pymlp iris seplen sepwid petlen petwid if training==1, type(classify) criterion(entropy)}{p_end}
+{pstd}Example 1: Classification with MLP: two hidden layers{p_end}
+{phang2} Load data{p_end}
+{phang3} {stata webuse iris, clear}{p_end}
+{phang2} Run model with 2 hidden layers, 4 nodes in layer 1 and 3 nodes in layer 2{p_end}
+{phang3} {stata pymlp iris seplen sepwid petlen petwid, type(classify)  hidden_layer_sizes(4,3)}{p_end}
+{phang2} Save predictions out to variable iris_predicted{p_end}
+{phang3} {stata predict iris_predicted}{p_end}
+
+{pstd}Example 3: Classification with MLP:, more options{p_end}
+{phang2} Load data{p_end}
+{phang3} {stata webuse iris, clear}{p_end}
+{phang2} Generate a training flag, marking approx 30% of dataset as training{p_end}
+{phang3} {stata gen training = runiform()<0.3}{p_end}
+{phang2} Run model with one hidden layer, mess with options{p_end}
+{phang3} {stata pymlp iris seplen sepwid petlen petwid if training==1, type(classify) criterion(entropy) alpha(0.0005) hidden_layer_sizes(5)}{p_end}
+{phang2} Save predictions out to variable iris_predicted{p_end}
+{phang3} {stata predict iris_predicted}{p_end}
  
 
 {marker author}{...}

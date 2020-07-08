@@ -85,6 +85,9 @@ if "`solver'"=="" {
 	local no_solver_specified = 1
 	local solver "adam"
 }
+else {
+	local no_solver_specified = 0
+}
 if ~inlist("`solver'","lbfgs","sgd","adam") {
 	di as error "Syntax error: solver() must be one of: lbfgs, sgd, or adam (was `max_depth')"
 	exit 1
@@ -333,28 +336,36 @@ local test_obs_f: di %10.0fc `num_obs_test'
 local yvar_fmt = "`yvar'"
 if length("`yvar'")>13 local yvar_fmt = substr("`yvar'",1,13) + "..."
 
+* Formatted string for hidden layer sizes
+local layer_size_fmt "`hidden_layer_sizes'"
+local layer_size_fmt = subinstr("`layer_size_fmt'", "(", "",.) 
+local layer_size_fmt = subinstr("`layer_size_fmt'", ")", "",.) 
+local layer_size_fmt = subinstr("`layer_size_fmt'  ", ",  ", " ",.) 
+
 * Display output
 noi di "{hline 80}"
 noi di in ye "Multi-layer perceptron `type_str'"
 noi di " "
 noi di in gr "{ul:Data}"
-noi di in gr "Dependent variable  = " in ye "`yvar_fmt'" _continue
-noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
-noi di in gr "Number of features  = " in ye `num_features' _continue
-noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
-noi di in gr "Training identifier = " in ye "`training_di'"
+noi di in gr "Dependent variable    = " in ye "`yvar_fmt'" _continue
+noi di in gr _col(41) "Number of training obs   =" _continue
+noi di in ye "`train_obs_f'"
+noi di in gr "Number of features    = " in ye `num_features' _continue
+noi di in gr _col(41) "Number of validation obs =" _continue
+noi di in ye "`test_obs_f'"
+noi di in gr "Training identifier   = " in ye "`training_di'"
 noi di " "
 noi di in gr "{ul:Neural network options}"
-di in gr "Hidden layers:           " in ye `num_layers' 
-di in gr "Nodes per layer:         " in ye "`hidden_layer_sizes'"
-di in gr "Activation function:     " in ye "`activation'"
-di in gr "Alpha (L2 penalty term): " in ye "`alpha'"
+noi di in gr "Hidden layers         = " in ye `num_layers' _continue
+noi di in gr _col(41) "Activation function      = " in ye "`activation'"
+noi di in gr "Nodes per layer       = " in ye "`layer_size_fmt'" _continue
+noi di in gr _col(41) "Alpha (L2 penalty term)  = " in ye "`alpha'"
 
 noi di " "
 noi di in gr "{ul:Optimizer settings}"
-di in gr "Solver: " in ye "`solver'"
-di in gr "Max iterations:             " in ye "`max_iter'"
-di in gr "Batch size:                 " in ye "`batch_size'"
+noi di in gr "Solver                = " in ye "`solver'" _continue
+noi di in gr _col(41) "Batch size               = " in ye "`batch_size'"
+noi di in gr "Max iterations        = " in ye "`max_iter'"
 if "`solver'"=="sgd" & "`learning_rate'"=="invscaling" di in gr "Power t:                 " in ye "`power_t'"
 if inlist("`solver'","adam","sgd")  di in gr "Initial learning rate:      " in ye "`learning_rate_init'"
 if inlist("`solver'","adam") di in gr "Exp decay rate, 1st moment: " in ye "`beta_1'"

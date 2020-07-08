@@ -333,20 +333,22 @@ noi di in ye "Decision tree `type_str'"
 noi di " "
 noi di in gr "{ul:Data}"
 noi di in gr "Dependent variable  = " in ye "`yvar_fmt'" _continue
-noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
+noi di in gr _col(41) "Number of training obs   =" _continue
+noi di in ye "`train_obs_f'"
 noi di in gr "Number of features  = " in ye `num_features' _continue
-noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
+noi di in gr _col(41) "Number of validation obs =" _continue
+noi di in ye "`test_obs_f'"
 noi di in gr "Training identifier = " in ye "`training_di'"
 noi di " "
 noi di in gr "{ul:Options}"
 noi di in gr "Max tree depth      = " in ye "`max_depth'" _continue
-noi di in gr _col(41) "Min obs/leaf              = " in ye "`min_samples_leaf'"
+noi di in gr _col(41) "Min obs/leaf             = " in ye "`min_samples_leaf'"
 noi di in gr "Max features/tree   = " in ye "`max_features_di'" _continue
-noi di in gr _col(41) "Min obs/interior node     = " in ye "`min_samples_split'"
+noi di in gr _col(41) "Min obs/interior node    = " in ye "`min_samples_split'"
 noi di in gr "Max leaf nodes      = " in ye "`max_leaf_nodes'" _continue
-noi di in gr _col(41) "Min weight fraction/leaf  = " in ye "`min_weight_fraction_leaf'"
+noi di in gr _col(41) "Min weight fraction/leaf = " in ye "`min_weight_fraction_leaf'"
 noi di in gr "Split criterion     = " in ye "`criterion'" _continue
-noi di in gr _col(41) "Min impurity decrease     = " in ye "`min_impurity_decrease'"
+noi di in gr _col(41) "Min impurity decrease    = " in ye "`min_impurity_decrease'"
 noi di " "
 noi di in gr "{ul:Output}"
 if "`type'"=="regress" {
@@ -433,7 +435,7 @@ python:
 from pandas import DataFrame
 from sklearn.tree import DecisionTreeClassifier,DecisionTreeRegressor
 from sfi import Data,Matrix,Scalar
-from sklearn import metrics
+from sklearn import metrics, preprocessing
 import numpy as np
 
 # XX test passing object to main

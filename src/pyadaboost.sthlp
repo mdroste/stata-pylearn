@@ -1,9 +1,9 @@
 {smcl}
-{* *! version 0.63 8jul2020}{...}
+{* *! version 0.65 8jul2020}{...}
 {viewerjumpto "Syntax" "pyadaboost##syntax"}{...}
 {viewerjumpto "Description" "pyadaboost##description"}{...}
 {viewerjumpto "Options" "pyadaboost##options"}{...}
-{viewerjumpto "Stored results" "pyforest##results"}{...}
+{viewerjumpto "Stored results" "pyadaboost##results"}{...}
 {viewerjumpto "Examples" "pyadaboost##examples"}{...}
 {viewerjumpto "Author" "pyadaboost##author"}{...}
 {viewerjumpto "Acknowledgements" "pyadaboost##acknowledgements"}{...}
@@ -24,14 +24,15 @@
 {syntab :Main}
 {synopt :{opt type(string)}}{it:string} may be {bf:regress} or {bf:classify}.{p_end}
 
+{syntab :Pre-processing}
+{synopt :{opt training(varname)}}varname is an indicator for the training sample{p_end}
+
 {syntab :Adaptive Boosting options}
 {synopt :{opt n_estimators(#)}}Number of trees{p_end}
 {synopt :{opt learning_rate(#)}}Shrinks the contribution of each predictor{p_end}
 {synopt :{opt loss(string)}}Loss function when updating weights, for type(regress){p_end}
 {synopt :{opt algorithm(string)}}Boosting algorithm, for type(classify){p_end}
 
-{syntab :Training options}
-{synopt :{opt training(varname)}}varname is an indicator for the training sample{p_end}
 {synoptline}
 {p 4 6 2}
 {p_end}
@@ -63,6 +64,12 @@
 {opth type(string)} declares whether this is a regression or classification problem. In general, type(classify) is more appropriate when the dependent variable is categorical, and type(regression) is more appropriate when the dependent variable is continuous.
 
 
+{dlgtab:Pre-processing}
+
+{phang}
+{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. If this option is specified, frac_training() is ignored.
+
+
 {dlgtab:Adaptive boosting options}
  
 {phang}
@@ -76,12 +83,6 @@
 
 {phang}
 {opt loss(string)} specifies the loss function used when type(regress) is specified. The default is loss(linear). Alternative options are loss(exponential) and loss(square). 
-
-
-{dlgtab:Training data options}
-
-{phang}
-{opt training(varname)} identifies an indicator variable in the current dataset that is equal to 1 when an observation should be used for training and 0 otherwise. 
 
 
 {marker results}{...}
@@ -106,8 +107,6 @@
 
 {marker examples}{...}
 {title:Examples}
- 
-{pstd}See the {browse "https://www.github.com/mdroste/stata-pylearn/":pylearn GitHub page} for additional examples.{p_end}
 
 {pstd}{bf:Example 1}: Classification with adaptive boosting, saving predictions as a new variable called iris_prediction{p_end}
 {phang2} Load data{p_end}

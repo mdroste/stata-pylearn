@@ -1,9 +1,9 @@
 {smcl}
-{* *! version 0.63 8jul2020}{...}
+{* *! version 0.65 8jul2020}{...}
 {viewerjumpto "Syntax" "pytree##syntax"}{...}
 {viewerjumpto "Description" "pytree##description"}{...}
 {viewerjumpto "Options" "pytree##options"}{...}
-{viewerjumpto "Stored results" "pyforest##results"}{...}
+{viewerjumpto "Stored results" "pytree##results"}{...}
 {viewerjumpto "Examples" "pytree##examples"}{...}
 {viewerjumpto "Author" "pytree##author"}{...}
 {viewerjumpto "Acknowledgements" "pytree##acknowledgements"}{...}
@@ -23,10 +23,12 @@
 {synoptset 32 tabbed}{...}
 {synopthdr :options}
 {synoptline}
- 
 {syntab :Main}
 {synopt :{opt type(string)}}{it:string} may be {bf:regress} or {bf:classify}.{p_end}
  
+{syntab :Pre-processing}
+{synopt :{opt training(varname)}}varname is an indicator for the training sample{p_end}
+
 {syntab :Decision tree options}
 {synopt :{opt criterion(string)}}Criterion for splitting nodes (see details below){p_end}
 {synopt :{opt max_depth(#)}}Maximum tree depth{p_end}
@@ -35,10 +37,6 @@
 {synopt :{opt max_features(numeric)}}Maximum number of features to consider per tree{p_end}
 {synopt :{opt max_leaf_nodes(#)}}Maximum leaf nodes{p_end}
 {synopt :{opt min_impurity_decrease(#)}}Propensity to split{p_end}
-
-{syntab :Training options}
-{synopt :{opt training(varname)}}varname is an indicator for the training sample{p_end}
-
 {synoptline}
 {p 4 6 2}
 {p_end}
@@ -127,8 +125,6 @@
 
 {marker examples}{...}
 {title:Examples}
- 
-{pstd}See the Github page.{p_end}
 
 {pstd}{bf:Example 1}: Classification with decision tree, saving predictions as a new variable called iris_prediction{p_end}
 {phang2} Load data{p_end}
