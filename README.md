@@ -56,16 +56,11 @@ Installation
 Installing pylearn is very simple.
 
 1. First, install the Stata code and documentation. You can run the following Stata command to install everything directly from this GitHub repository:
-
 ```stata
 net install pylearn, from(https://raw.githubusercontent.com/mdroste/stata-pylearn/master/src/) replace
 ```
 
-2. Install Python if you haven't already, and check to make sure Stata can see it with the following Stata command:
-
-
-3. Make sure that you have the required Python prerequisites installed by running the included Stata program:
-
+2. Install Python, if you haven't already. Make sure that you have the required Python prerequisites installed by running the included Stata program:
 ```stata
 pylearn, setup
 ```
