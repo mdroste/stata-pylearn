@@ -387,7 +387,7 @@ python: run_random_forest( ///
 	`class_weight', ///
 	"`prediction'", ///
 	"`training_var'", ///
-	`importance', `nonempty_test')
+	`importance', `nonempty_test', `standardize')
 	
 * xx move me
 if "`prediction'"=="" local prediction_di "Not specified. Use {help predict:predict} for post-estimation predictions."
