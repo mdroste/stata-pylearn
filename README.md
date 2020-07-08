@@ -11,7 +11,7 @@ pylearn
 
 Supervised learning algorithms in Stata with Scikit-learn
 
-`version 0.5 18may2020`
+`version 0.6 7jul2020`
 
 
 Overview
@@ -51,6 +51,15 @@ If Stata cannot find your Python installation, refer to the [installation guide]
 
 ```stata
 pylearn_setup
+```
+
+
+Upgrading
+---------------------------------
+
+To check if you have the latest version of pylearn, simply run the following:
+```stata
+pylearn, upgrade
 ```
 
 
