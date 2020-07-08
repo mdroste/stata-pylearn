@@ -11,13 +11,14 @@ pylearn
 
 Supervised learning in Stata with [scikit-learn](https://scikit-learn.org)
 
-`version 0.6 7jul2020`
+`version 0.60 7jul2020`
 
 
 Overview
 ---------------------------------
 
-pylearn is a set of Stata modules that allows Stata users to implement many popular supervised learning algorithms directly from Stata. In particular, pylearn relies on Stata 16.0's [new Python integration](https://www.stata.com/new-in-stata/python-integration/) and the popular Python library [scikit-learn](https://scikit-learn.org) to transfer data and estimates between Stata and a Python interpreter behind the scenes. The result is that users can estimate a broader class of supervised learning algorithms - including decision trees, random forests, boosted trees (gradient boosted trees and AdaBoost), and neural networks (multi-layer perceptrons).
+pylearn is a set of Stata modules that allows Stata users to implement many popular supervised learning algorithms directly from Stata. In particular, pylearn makes use of Stata 16.0's [Python integration](https://www.stata.com/new-in-stata/python-integration/) and the popular Python library [scikit-learn](https://scikit-learn.org) to interface between Stata and Python behind the scenes. This allows Stata users to estimate a much broader class of supervised learning models - decision trees, random forests, adaptive boosting, gradient boosting, and multi-layer perceptrons (neural networks) - directly from Stata and with a common Stata-like syntax.
+
 
 Features
 ---------------------------------
@@ -56,7 +57,7 @@ Installing pylearn is very simple.
 1. First, install the Stata code and documentation. You can run the following Stata command to install everything directly from this GitHub repository:
 
 ```stata
-net install pylearn, from(https://raw.githubusercontent.com/mdroste/stata-pylearn/master/src) replace
+net install pylearn, from(https://raw.githubusercontent.com/mdroste/stata-pylearn/master/src/) replace
 ```
 
 2. Install Python if you haven't already, and check to make sure Stata can see it with the following Stata command:
