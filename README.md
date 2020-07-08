@@ -22,7 +22,7 @@ pylearn is a set of Stata modules that allows Stata users to implement many popu
 Features
 ---------------------------------
 
-Pylearn currently contains a handful of very popular supervised learning algorithms.
+Pylearn consists of five Stata functions implementing popular supervised ML algorithms:
 
 
 | Stata Function Name     | Description                               | Related scikit-learn classes                     | 
@@ -78,15 +78,21 @@ pylearn, upgrade
 ```
 
 
+Examples
+---------------------------------
+
+The Stata internal documentation for each file contains a list of minimal working examples for each program.
+  
   
 Todo
 ---------------------------------
 
 The following items will be addressed soon:
 
-- [ ] Add support for weights
-- [ ] Post-estimation: feature importance (where applicable)
+- [ ] Weights: Add support for weights
+- [ ] Post-estimation: return feature importance (where applicable)
 - [ ] Model selection: cross-validation
+- [ ] Exception handling: more elegant exception handling in Python
 
 
 License
