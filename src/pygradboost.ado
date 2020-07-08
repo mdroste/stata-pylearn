@@ -358,7 +358,9 @@ noi di in gr "Max features/tree     = " in ye "`max_features_di'" _continue
 noi di in gr _col(41) "Min obs/leaf             = " in ye "`min_samples_leaf'"
 noi di in gr "Max leaf nodes        = " in ye "`max_leaf_nodes'" _continue
 noi di in gr _col(41) "Min weight fraction/leaf = " in ye "`min_weight_fraction_leaf'"
-noi di in gr "Random number seed    = " in ye "`seed_di'"
+noi di in gr "Random number seed    = " in ye "`seed_di'" _continue
+noi di in gr _col(41) "Alpha (complexity cost)  = " in ye "`ccp_alpha'"
+noi di in gr "Frac. subsampled      = " in ye "`subsample'"
 noi di " "
 noi di in gr "{ul:Output}"
 if "`type'"=="regress"  noi di in gr "Training RMSE       = " in ye `is_rmse'
