@@ -95,7 +95,7 @@ pyforest price mpg trunk weight, type(regress) training(foreign)
 predict price_predicted
 ```
 
-Detailed documentation and usage examples are provided with each Stata file. For instance, to view more examples, type:
+Detailed documentation and usage examples are provided with each Stata file. For instance, see:
 ```stata
 help pyforest
 ```
