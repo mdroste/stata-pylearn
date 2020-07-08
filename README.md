@@ -81,15 +81,16 @@ pylearn, upgrade
 Usage
 ---------------------------------
 
-Using pylearn is simple, since the syntax for each component looks very similar to other commands for model estimaation in Stata. Notably, calls to pylearn porograms must specify an option called type() that specifies whether the model will be used for classification or regression.
+Using pylearn is simple, since the syntax for each component looks very similar to other Stata modeling commands.
 
-Here is a quick example producing a random forest with the pylearn component pyforest:
+Here is a quick example producing a random forest with pylearn's 'pyforest' command:
 
 ```stata
-* Load dataset of cars
+* Load auto dataset
 sysuse auto, clear
 
-* Estimate random forest regression model, training on foreign cars, save predictions as price_predicted
+* Estimate random forest regression model, predicting price using mpg, trunk, and weight
+* Train only on cars with foreign==1 and test on foreign==0
 pyforest price mpg trunk weight, type(regress) training(foreign)
 predict price_predicted
 ```
