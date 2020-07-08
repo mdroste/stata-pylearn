@@ -245,11 +245,16 @@ else {
 gettoken yvar xvars : varlist
 local num_features : word count `xvars'
 
-* preserve original data
+* Restrict sample with if and in conditions
+marksample touse, strok novarlist
+tempvar touse2
+gen `touse2' = `touse'
+ereturn post, esample(`touse2')
+
+* Preserve original data
 preserve
 
-* restrict sample with if and in conditions
-marksample touse, strok novarlist
+* Keep only if/in
 qui drop if `touse'==0
 
 * if type(classify): check to see if y needs encoding to numeric
@@ -317,6 +322,7 @@ local os_rmse: di %10.4f `e(test_rmse)'
 local os_mae: di %10.4f `e(test_mae)'
 local train_obs_f: di %10.0fc `num_obs_train'
 local test_obs_f: di %10.0fc `num_obs_test'
+noi di "Train obs f: `train_obs_f'"
 
 * Format/truncate dependent variable name
 local yvarlen = length("`yvar'")
@@ -331,7 +337,7 @@ if `yvarlen'>13 {
 
 * Display output
 noi di "{hline 80}"
-noi di in ye "Gradient Boosted Tree `type_str'"
+noi di in ye "Gradient boosted `type_str'"
 noi di " "
 noi di in gr "{ul:Data}"
 noi di in gr "Dependent variable  = " in ye "`yvar_fmt'" _continue
@@ -339,7 +345,6 @@ noi di in gr _col(41) "Number of training obs   = " in ye `train_obs_f'
 noi di in gr "Number of features  = " in ye `num_features' _continue
 noi di in gr _col(41) "Number of validation obs = " in ye `test_obs_f'
 noi di in gr "Training identifier = " in ye "`training_di'"
-no di in gr  "Standardized        =" in ye "`stdize_fmt'"
 noi di " "
 noi di in gr "{ul:Options}"
 noi di in gr "Number of estimators = " in ye "`n_estimators'" 
@@ -374,13 +379,18 @@ foreach v of varlist `xvars' {
 	local K = `K'+1
 }
 
-* Store as locals
-ereturn local predict "pylearn_predict"
-ereturn local features "`xvars'"
-ereturn local type "`type'"
+* Ereturn scalars
 ereturn scalar N = `num_obs_train'
 ereturn scalar N_test = `num_obs_test'
 ereturn scalar K = `num_features'
+
+* Ereturn locals
+ereturn local predict "pylearn_predict"
+ereturn local features "`xvars'"
+ereturn local depvar "`yvar'"
+ereturn local trainflag "`training'"
+ereturn local cmd "pytree"
+ereturn local type "`type'"
 
 
 end

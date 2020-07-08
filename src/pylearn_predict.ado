@@ -70,6 +70,7 @@ python:
 
 # Import SFI, always with stata 16
 from sfi import Data,Matrix,Scalar
+from pandas import DataFrame
 
 def post_prediction(vars, prediction):
 
@@ -79,14 +80,25 @@ def post_prediction(vars, prediction):
 	# Import model from Python namespace
 	try:
 		from __main__ import model_predict as pred
+		from __main__ import model_object as model
 	except ImportError:
 		print("Error: Could not find estimation results. Run a pylearn command before loading this.")
 		Scalar.setValue("import_success", 0, vtype='visible')
 		return
 
-	# Generate predictions (on both training and test data)
-	pred    = pred
+	# Load data into Pandas data frame
+	df = DataFrame(Data.get(vars))
+	colnames = []
+	for var in vars.split():
+		colnames.append(var)
+	df.columns = colnames
 	
+	# Create list of feature names
+	features = df.columns[0:]
+	
+	# Generate predictions (on both training and test data)
+	pred    = model.predict(df[features])
+
 	# Export predictions back to Stata
    	Data.addVarFloat(prediction)
 	Data.store(prediction,None,pred)
