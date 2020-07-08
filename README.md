@@ -4,8 +4,8 @@ pylearn
 
 [Overview](#overview)
 | [Features](#features)
-| [Installation](#installation)
 | [Prerequisites](#prerequisites)
+| [Installation](#installation)
 | [Usage](#usage)
 | [To-Do](#todo)
 | [License](#license)
