@@ -564,7 +564,7 @@ def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_spl
 
 	# If nonempty test sample, get out of sample stats
 	if type=="regress" and nonempty_test==1:
-		pred_outsample = rf.predict(df_test[features])
+		pred_outsample = model.predict(df_test[features])
 		y_outsample = df_test[y]
 		outsample_mae = metrics.mean_absolute_error(y_outsample, pred_outsample)
 		outsample_mse = metrics.mean_squared_error(y_outsample, pred_outsample)
@@ -573,7 +573,7 @@ def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_spl
 		Scalar.setValue("e(test_rmse)", outsample_rmse, vtype='visible')
 
 	if type=="classify" and nonempty_test==1:
-		pred_outsample = rf.predict(df_test[features])
+		pred_outsample = model.predict(df_test[features])
 		y_outsample = df_test[y]
 		outsample_accuracy = metrics.accuracy_score(y_outsample, pred_outsample)
 		Scalar.setValue("e(test_accuracy)", outsample_accuracy, vtype='visible')
