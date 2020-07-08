@@ -9,7 +9,7 @@ pylearn
 | [To-Do](#todo)
 | [License](#license)
 
-Supervised learning algorithms in Stata with Scikit-learn
+Supervised learning in Stata with [scikit-learn](https://scikit-learn.org)
 
 `version 0.6 7jul2020`
 
@@ -83,7 +83,7 @@ Examples
 
 The Stata internal documentation for each file contains a list of minimal working examples for each program.
   
-  
+
 Todo
 ---------------------------------
 
