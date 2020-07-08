@@ -1,11 +1,9 @@
-*! Version 0.60, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pyforest.ado
 * Purpose:   Random forest classification and regression in Stata 16+ with
 *            Python and scikit-learn. Component of pylearn.
-* More info: www.github.com/mdroste/stata-pylearn
-* Author:    Michael Droste
 *===============================================================================
 
 program define pyforest, eclass

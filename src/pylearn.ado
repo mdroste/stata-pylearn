@@ -1,11 +1,9 @@
-*! Version 0.60, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * FILE:     pylearn.ado
 * PURPOSE:  Wrapper/setup program for pylearn, a suite of supervised learning
-*           algorithms in Stata
-* SEE MORE: https://github.com/mdroste/stata-pylearn
-* AUTHOR:   Michael Droste
+*           algorithms in Stata.
 *===============================================================================
 
 program pylearn

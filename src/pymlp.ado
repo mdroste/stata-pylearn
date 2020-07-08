@@ -1,11 +1,9 @@
-*! Version 0.60, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pymlp.ado
 * Purpose:   Multi-layer perceptron (neural net) classification/regression in Stata
 *            16+ with Python and scikit-learn. Component of pylearn.
-* More info: www.github.com/mdroste/stata-pylearn
-* Author:    Michael Droste
 *===============================================================================
 
 program define pymlp, eclass
@@ -341,10 +339,17 @@ di in gr "Hidden layers:           " in ye `num_layers'
 di in gr "Nodes per layer:         " in ye "`hidden_layer_sizes'"
 di in gr "Activation function:     " in ye "`activation'"
 di in gr "Alpha (L2 penalty term): " in ye "`alpha'"
+
 noi di " "
 noi di in gr "{ul:Optimizer settings}"
 di in gr "Solver: " in ye "`solver'"
-di in gr "Max iterations: " in ye "`max_iter'"
+di in gr "Max iterations:             " in ye "`max_iter'"
+di in gr "Batch size:                 " in ye "`batch_size'"
+if "`solver'"=="sgd" & "`learning_rate'"=="invscaling" di in gr "Power t:                 " in ye "`power_t'"
+if inlist("`solver'","adam","sgd")  di in gr "Initial learning rate:      " in ye "`learning_rate_init'"
+if inlist("`solver'","adam") di in gr "Exp decay rate, 1st moment: " in ye "`beta_1'"
+if inlist("`solver'","adam") di in gr "Exp decay rate, 2nd moment: " in ye "`beta_2'"
+if inlist("`solver'","adam") di in gr "Epsilon (for adam solver):  " in ye "`epsilon'"
 noi di " "
 noi di in gr "{ul:Output}"
 
@@ -402,7 +407,7 @@ if "`needs_encoding'"=="yes" {
 
 * Return stuff to e class
 *ereturn matrix importance = temp1e
-ereturn local predict "pymlp_p"
+ereturn local predict "pylearn_predict"
 global features "`xvars'"
 
 

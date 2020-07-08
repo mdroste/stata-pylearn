@@ -1,11 +1,9 @@
-*! Version 0.60, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pytree.ado
 * Purpose:   Decision tree classification and regression in Stata 16+ with
 *            Python and scikit-learn. Component of pylearn.
-* More info: www.github.com/mdroste/stata-pylearn
-* Author:    Michael Droste
 *===============================================================================
 
 program define pytree, eclass
@@ -66,7 +64,7 @@ if "`type'"=="classify" {
 		exit 1
 	}
 }
-if "`type"=="regress" {
+if "`type'"=="regress" {
 	if ~inlist("`criterion'","mse","mae") {
 		di as error "Syntax error: with type(`type'), criterion() must be 'mse' or 'mae' (was `criterion')"
 		exit 1
@@ -90,12 +88,19 @@ if "`max_depth'"!="None" {
 *-------------------------------------------------
 
 if "`min_samples_split'"=="" local min_samples_split 2
+if `min_samples_split'<0 {
+	di as error "Syntax error: min_samples_split() must be positive."
+	exit 1
+}
 
 *-------------------------------------------------
 * min_samples_leaf: int, float, optional (default: 1) 
 *-------------------------------------------------
 
 if "`min_samples_leaf'"=="" local min_samples_leaf 1
+if `min_samples_leaf'<0 {
+	di as error "Syntax error: min_samples_leaf() must be positive."
+}
 
 *-------------------------------------------------
 * min_weight_fraction_leaf: float, optional (default: 0)

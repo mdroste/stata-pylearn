@@ -1,11 +1,9 @@
-*! Version 0.60, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.62, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pygradboost.ado
 * Purpose:   Classification and regression in Stata 16+ using gradient boosted
 *            trees, with Python and scikit-learn. Component of pylearn.
-* More info: www.github.com/mdroste/stata-pylearn
-* Author:    Michael Droste
 *===============================================================================
 
 program define pygradboost, eclass
