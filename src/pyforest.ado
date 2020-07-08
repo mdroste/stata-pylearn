@@ -556,13 +556,13 @@ def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_spl
 		insample_rmse = np.sqrt(insample_mse)
 		Scalar.setValue("e(training_mae)", insample_mae, vtype='visible')
 		Scalar.setValue("e(training_rmse)", insample_rmse, vtype='visible')
-		Scalar.setValue("e(training_accuracy)", "", vtype='visible')
+		Scalar.setString("e(training_accuracy)", "", vtype='visible')
 
 	# If classify: get in sample (training sample) accuracy
 	if type=="classify":
 		insample_accuracy = metrics.accuracy_score(y_insample, pred_insample)
-		Scalar.setValue("e(training_mae)", "", vtype='visible')
-		Scalar.setValue("e(training_rmse)", "", vtype='visible')
+		Scalar.setString("e(training_mae)", "", vtype='visible')
+		Scalar.setString("e(training_rmse)", "", vtype='visible')
 		Scalar.setValue("e(training_accuracy)", insample_accuracy, vtype='visible')
 
 	# If nonempty test sample, get out of sample stats
@@ -574,7 +574,7 @@ def run_random_forest(type,vars,n_estimators,criterion,max_depth,min_samples_spl
 		outsample_rmse = np.sqrt(outsample_mse)
 		Scalar.setValue("e(test_mae)", outsample_mae, vtype='visible')
 		Scalar.setValue("e(test_rmse)", outsample_rmse, vtype='visible')
-		Scalar.setValue("e(test_accuracy)", "", vtype='visible')
+		Scalar.setString("e(test_accuracy)", "", vtype='visible')
 
 	if type=="classify" and nonempty_test==1:
 		pred_outsample = model.predict(df_test[features])
