@@ -4,14 +4,14 @@ d 'pylearn': supervised machine learning in Stata
 d
 d Distribution-Date: 20200706
 d
-f src/pylearn.ado
-f src/pylearn.sthlp
-f src/pylearn_predict.ado
-f src/pytree.ado
-f src/pytree.sthlp
-f src/pyforest.ado
-f src/pyforest.sthlp
-f src/pyadaboost.ado
-f src/pyadaboost.sthlp
-f src/pygradboost.ado
-f src/pygradboost.sthlp
+f pylearn.ado
+f pylearn.sthlp
+f pylearn_predict.ado
+f pytree.ado
+f pytree.sthlp
+f pyforest.ado
+f pyforest.sthlp
+f pyadaboost.ado
+f pyadaboost.sthlp
+f pygradboost.ado
+f pygradboost.sthlp

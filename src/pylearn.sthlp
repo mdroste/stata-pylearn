@@ -1,11 +1,11 @@
 {smcl}
 {* *! version 0.60 8jul2020}{...}
 {viewerjumpto "Syntax" "pylearn##syntax"}{...}
-{viewerjumpto "Description" "pyforest##description"}{...}
-{viewerjumpto "Options" "pyforest##options"}{...}
-{viewerjumpto "Examples" "pyforest##examples"}{...}
-{viewerjumpto "Author" "pyforest##author"}{...}
-{viewerjumpto "Acknowledgements" "pyforest##acknowledgements"}{...}
+{viewerjumpto "Description" "pylearn##description"}{...}
+{viewerjumpto "Options" "pylearn##options"}{...}
+{viewerjumpto "Examples" "pylearn##examples"}{...}
+{viewerjumpto "Author" "pylearn##author"}{...}
+{viewerjumpto "Acknowledgements" "pylearn##acknowledgements"}{...}
 {title:Title}
  
 {p2colset 5 16 21 2}{...}
@@ -22,13 +22,13 @@ Please run {stata pylearn, upgrade} to upgrade to the latest release.
 {manhelp pytree R:pytree} estimates decision trees. {p_end}
 
 {p 8 17 2}
-{manhelp pyforest R:pyforest} estimates random forests. {p_end}
+{manhelp pylearn R:pylearn} estimates random forests. {p_end}
 
 {p 8 17 2}
 {manhelp pymlp R:pymlp} estimates multi-layer perceptrons (neural-networks). {p_end}
 
 {p 8 17 2}
-{manhelp pyada R:pyada} estimates adaptive boosted trees/regressions (AdaBoost). {p_end}
+{manhelp pyadaboost R:pyadaboost} estimates adaptive boosted trees/regressions (AdaBoost). {p_end}
 
 {p 8 17 2}
 {manhelp pygradboost R:pygradboost} estimates gradient boosted trees. {p_end}
