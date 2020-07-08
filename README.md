@@ -90,7 +90,8 @@ Here is a quick example producing a random forest with the pylearn component pyf
 sysuse auto, clear
 
 * Estimate random forest regression model, training on foreign cars, save predictions as price_predicted
-pyforest price mpg trunk weight, type(regress) training(foreign) prediction(price_predicted)
+pyforest price mpg trunk weight, type(regress) training(foreign)
+predict price_predicted
 ```
 
 Detailed documentation and usage examples are provided with each Stata file. For instance, to view more examples, type:
