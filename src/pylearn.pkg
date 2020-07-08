@@ -1,4 +1,4 @@
-v 0.60
+v 0.61
 d
 d 'pylearn': supervised machine learning in Stata
 d
@@ -15,3 +15,5 @@ f pyadaboost.ado
 f pyadaboost.sthlp
 f pygradboost.ado
 f pygradboost.sthlp
+f pymlp.ado
+f pymlp.sthlp

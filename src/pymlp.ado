@@ -39,8 +39,10 @@ syntax varlist(min=2) [if] [in] [aweight fweight], ///
 	]
 
 *-------------------------------------------------------------------------------
-* XX: this is where Python checking goes
+* Before doing anything: make sure we have Python 3.0+ and good modules
 *-------------------------------------------------------------------------------
+
+pylearn, check
 
 *-------------------------------------------------------------------------------
 * Handle arguments

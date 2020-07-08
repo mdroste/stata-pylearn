@@ -27,48 +27,7 @@ syntax varlist(min=2) [if] [in] [aweight fweight], ///
 * Before doing anything: make sure we have Python 3.0+ and good modules
 *-------------------------------------------------------------------------------
 
-* First: Check to see if we have Python, and it is version 2.7 or arbove
-qui python query
-local python_path = r(execpath)
-local python_vers = r(version)
-if "`python_path'"=="" {
-	di as error "Error: No python path found! Do you have Python 3.5+ installed?"
-	di as error "Please refer to the installation instructions on Github:"
-	di as error "https://github.com/mdroste/stata-pylearn/blob/master/docs/install.md"
-	exit 1
-}
-
-* Check to see if we have NumPy
-cap python which numpy
-if _rc!=0 {
-	di as error "Error: Could not import the Python module numpy. "
-	di as error: "Run the command {pylearn, install} to try installing this from Stata, and then restart Stata."
-	exit 1
-}
-
-* Check to see if we have Pandas
-cap python which pandas
-if _rc!=0 {
-	di as error: "Error: Could not import the Python module pandas."
-	di as error: "Run the command {pylearn, install} to try installing this from Stata, and then restart Stata."
-	exit 1
-}
-
-* Check to see if we have Scikit-learn
-cap python which pandas
-if _rc!=0 {
-	di as error: "Error: Could not import the Python module scikit-learn (sklearn)."
-	di as error: "Run the command {pylearn, install} to try installing this from Stata, and then restart Stata."
-	exit 1
-}
-
-* Check to see if we have SFI (definitely should have this, comes w/ Stata 16)
-cap python which sfi
-if _rc!=0 {
-	di as error: "Error: Could not import the Python module sfi."
-	di as error: "This is weird, since it should come with Stata 16..."
-	exit 1
-}
+pylearn, check
 
 *-------------------------------------------------------------------------------
 * Handle arguments

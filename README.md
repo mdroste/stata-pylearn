@@ -11,7 +11,7 @@ pylearn
 
 Supervised learning in Stata with [scikit-learn](https://scikit-learn.org)
 
-`version 0.60 7jul2020`
+`version 0.61 7jul2020`
 
 
 Overview
