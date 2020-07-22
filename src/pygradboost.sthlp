@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.65 8jul2020}{...}
+{* *! version 0.70 21jul2020}{...}
 {viewerjumpto "Syntax" "pygradboost##syntax"}{...}
 {viewerjumpto "Description" "pygradboost##description"}{...}
 {viewerjumpto "Options" "pygradboost##options"}{...}
@@ -40,7 +40,6 @@
 {synopt :{opt max_leaf_nodes(#)}}Maximum leaf nodes{p_end}
 {synopt :{opt min_impurity_decrease(#)}}Propensity to split{p_end}
 {synopt :{opt subsample(#)}}Fraction of obs to use for fit trees; stochastic gradient boosting if <1{p_end}
-{synopt :{opt ccp_alpha(#)}}Complexity parameter for pruning{p_end}
 
 {syntab :Early Stopping Options}
 {synopt :{opt n_iter_no_change(#)}}Stops early if # iterations without change in fit on a validation subsample{p_end}
@@ -118,9 +117,6 @@
 
 {phang}
 {opt subsample(#)} fraction of observations to use for fitting base learners. If smaller than 1, we are doing stochastic gradient boosting. Must be between 0 and 1. Default: subsample(1).
-
-{phang}
-{opt ccp_alpha(#)} specifies a complexity parameter for minimal cost-compleity pruning. The subtree with the largest cost complexity smaller than ccp_alpha is chosen. By default there is no pruning, ccp_alpha(0).
 
 
 {dlgtab:Early stopping options}

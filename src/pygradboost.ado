@@ -1,4 +1,4 @@
-*! Version 0.63, 8jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.70, 21jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pygradboost.ado
@@ -26,7 +26,6 @@ syntax varlist(min=2) [if] [in] [aweight fweight], ///
 	validation_fraction(real 0.1)    /// proportion of training dataset
 	n_iter_no_change(integer -1)     /// Terminates when training doesnt improve
 	tol(real 0.0001)                 /// Tolerance threshold for early stopping
-	ccp_alpha(real 0)                /// complexity parameter
 	random_state(integer -1) 	 	 /// seed used by random number generator
 	class_weight 			 	 	 /// XX NOT YET IMPLEMENTED
     training(varname) 	             /// training dataset identifier
@@ -305,7 +304,7 @@ python: run_gradboost( ///
 	`n_estimators', "`loss'", `learning_rate', "`criterion'", ///
 	`max_depth', `min_samples_split', `min_samples_leaf', `min_weight_fraction_leaf', ///
 	`max_features', `max_leaf_nodes', `min_impurity_decrease', `subsample', ///
-	`random_state', `class_weight', `standardize', `validation_fraction', `n_iter_no_change', `tol', `ccp_alpha')
+	`random_state', `class_weight', `standardize', `validation_fraction', `n_iter_no_change', `tol')
 
 *-------------------------------------------------------------------------------
 * Prep data to prepare for output
@@ -431,7 +430,7 @@ def run_gradboost(type,vars,training,n_estimators, loss, learning_rate, criterio
                  max_depth, min_samples_split, min_samples_leaf, min_weight_fraction_leaf, 
                  max_features, max_leaf_nodes, min_impurity_decrease, 
                  subsample, random_state, class_weight, standardize, 
-                 validation_fraction, n_iter_no_change, tol, ccp_alpha):
+                 validation_fraction, n_iter_no_change, tol):
 
 	#-------------------------------------------------------------
 	# Load data from Stata into Python
@@ -490,8 +489,7 @@ def run_gradboost(type,vars,training,n_estimators, loss, learning_rate, criterio
 										 max_leaf_nodes=max_leaf_nodes, 
 										 validation_fraction=validation_fraction, 
 										 n_iter_no_change=n_iter_no_change, 
-										 tol=tol, 
-										 ccp_alpha=ccp_alpha)
+										 tol=tol)
 
 	# Initialize classifier (if model type is classify)
 	if type=="classify":
@@ -509,8 +507,7 @@ def run_gradboost(type,vars,training,n_estimators, loss, learning_rate, criterio
 										 max_leaf_nodes=max_leaf_nodes, 
 										 validation_fraction=validation_fraction, 
 										 n_iter_no_change=n_iter_no_change, 
-										 tol=tol, 
-										 ccp_alpha=ccp_alpha)
+										 tol=tol)
 
 					 
 	#-------------------------------------------------------------

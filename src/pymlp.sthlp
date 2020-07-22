@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.65 8jul2020}{...}
+{* *! version 0.70 21jul2020}{...}
 {viewerjumpto "Syntax" "pymlp##syntax"}{...}
 {viewerjumpto "Description" "pymlp##description"}{...}
 {viewerjumpto "Options" "pymlp##options"}{...}
@@ -185,7 +185,7 @@
 {phang2} Generate a training flag, marking approx 30% of dataset as training{p_end}
 {phang3} {stata gen training = runiform()<0.3}{p_end}
 {phang2} Run model with one hidden layer, mess with options{p_end}
-{phang3} {stata pymlp iris seplen sepwid petlen petwid if training==1, type(classify) activation(logistic) alpha(0.0005) hidden_layer_sizes(5)}{p_end}
+{phang3} {stata pymlp iris seplen sepwid petlen petwid if training==1, type(classify) criterion(entropy) alpha(0.0005) hidden_layer_sizes(5)}{p_end}
 {phang2} Save predictions out to variable iris_predicted{p_end}
 {phang3} {stata predict iris_predicted}{p_end}
  

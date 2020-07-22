@@ -1,4 +1,4 @@
-*! Version 0.70, 13jul2020, Michael Droste, mdroste@fas.harvard.edu
+*! Version 0.70, 21jul2020, Michael Droste, mdroste@fas.harvard.edu
 *! More info and latest version: github.com/mdroste/stata-pylearn
 *===============================================================================
 * Program:   pymlp.ado
@@ -14,7 +14,7 @@ syntax varlist(min=2) [if] [in] [aweight fweight], ///
 		hidden_layer_sizes(string asis)	 /// Tuple with number of hidden layers and their 
 		activation(string asis)			 /// Activation function
 		solver(string asis)				 /// Optimization algorithm
-		alpha(real 0.0001)			 	 /// L2 penalty parameter (default 0.0001)
+		alpha (real 0.0001)			 	 /// L2 penalty parameter (default 0.0001)
 		batch_size                       /// Size of minibatches for sotchastic optimizers (default: auto)
 		learning_rate(string asis)		 /// learning rate schedule for weight updates
 		learning_rate_init(real 0.001) 	 /// initial learning rate (for sgd or adam solvers)
@@ -34,7 +34,7 @@ syntax varlist(min=2) [if] [in] [aweight fweight], ///
 		epsilon(real 1e-8) 				 /// some parameter
 		n_iter_no_change(real 10) 		 /// max iterations w no change in loss
 		standardize                      /// Standardize features
-		training                         /// training variable
+   		training(varname) 	             /// training dataset identifier
 	]
 
 *-------------------------------------------------------------------------------
